@@ -16,24 +16,22 @@ pipeline {
             }
         }
 
-        stage('build and push') {
+        stage('build') {
             steps {
-                echo "building docker image and pushing"
-                sh 'docker build -t holiday-class/${JOB_NAME}:${BUILD_NUMBER}'
+                sh 'docker build -t holiday_class:latest .'
             }
         }
 
         stage('deploy') {
             steps {
-                echo "deploy the new version"
                 sh '''
-                    docker rm holiday_class || true
-                    docker run -d --name holiday_class -p 3000:3000 holiday_jenkins:latest
+                    docker rm -f holiday_class || true
+                    docker run -d --name holiday_class -p 3000:3000 holiday_class:latest
                 '''
             }
         }
 
-    }
+            }
 
     post {
         success { echo "CICD poiplene deployment successfuly!" }
