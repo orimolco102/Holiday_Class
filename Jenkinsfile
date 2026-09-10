@@ -12,19 +12,19 @@ pipeline {
         stage('install') {
             steps {
                 echo "installing dependecies"
-                sh "npm ci"
+                bat "npm ci"
             }
         }
 
         stage('build') {
             steps {
-                sh 'docker build -t holiday_class:latest .'
+                bat 'docker build -t holiday_class:latest .'
             }
         }
 
         stage('deploy') {
             steps {
-                sh '''
+                bat '''
                     docker rm -f holiday_class || true
                     docker run -d --name holiday_class -p 3000:3000 holiday_class:latest
                 '''
