@@ -8,8 +8,7 @@ pipeline {
                 checkout scm
             }
         }
-    }
-
+    
         stage('install') {
             steps {
                 echo "installing dependecies"
@@ -38,4 +37,5 @@ pipeline {
             success { echo "CICD poiplene deployment successfuly" }
             failure { echo "Failed to deploy" }
         }
+    }
 }
