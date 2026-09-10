@@ -33,9 +33,11 @@ pipeline {
             }
         }
 
-        post {
-            success { echo "CICD poiplene deployment successfuly" }
-            failure { echo "Failed to deploy" }
-        }
     }
+
+    post {
+        success { echo "CICD poiplene deployment successfuly" }
+        failure { echo "Failed to deploy" }
+    }
+
 }
