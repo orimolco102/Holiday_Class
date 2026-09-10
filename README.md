@@ -52,4 +52,4 @@ Open a browser and go to:
 }
 ```
 
-A successful registration decreases the number of remaining spots for that event. Event availability is kept in memory while the server is running.
+A successful registration decreases the number of remaining spots for that event. Event availability is kept in memory while the server is running
