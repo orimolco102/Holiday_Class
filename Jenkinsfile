@@ -16,6 +16,15 @@ pipeline {
             }
         }
 
+        stage('testing app and server') {
+            steps {
+                dir('test') {
+                    echo "testing the scripts app and server"
+                    bat "npm run test"
+                }
+            }
+        }
+
         stage('build') {
             steps {
                 bat 'docker build -t holiday_class:latest .'

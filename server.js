@@ -1,7 +1,6 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const eventsFile = path.join(__dirname, "data", "events.json");
@@ -124,6 +123,14 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: "Unexpected server error" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server started on port ${PORT}`);
+// });
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}
+
+module.exports = { app };
