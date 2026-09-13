@@ -53,7 +53,7 @@ pipeline {
             }
 
     post {
-        success { echo "CICD poiplene deployment successfuly!" }
+        success { echo "CICD pipeline deployment successfuly!" }
         failure { echo "Failed to deploy" }
     }
 
