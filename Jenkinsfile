@@ -31,6 +31,16 @@ pipeline {
             }
         }
 
+        stage('upload to docker hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    bat '''
+                        docker push %DOCKER_USER%/holiday-class:latest
+                    '''
+                }
+            }
+        }
+
         stage('deploy') {
             steps {
                 bat '''
