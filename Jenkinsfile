@@ -35,6 +35,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat '''
+                        docker tag holiday_class:latest %DOCKER_USER%/holiday_class:latest
                         docker login -u %DOCKER_USER% -p %DOCKER_PASS%
                         docker push %DOCKER_USER%/holiday_class:latest
                     '''
