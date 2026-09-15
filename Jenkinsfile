@@ -43,16 +43,22 @@ pipeline {
             }
         }
 
+        // stage('deploy') {
+        //     steps {
+        //         bat '''
+        //             docker rm -f holiday_class || true
+        //             docker run -d --name holiday_class -p 3000:3000 holiday_class:latest
+        //         '''
+        //     }
+        // }
+        
         stage('deploy') {
             steps {
-                bat '''
-                    docker rm -f holiday_class || true
-                    docker run -d --name holiday_class -p 3000:3000 holiday_class:latest
-                '''
+                bat 'wsl ansible-playbook -i Ansible/inventory.ini ansible-docker.yml'
             }
         }
 
-            }
+    }
 
     post {
         success { echo "CICD pipeline deployment successfuly!" }
